@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" href="css/register form.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+<div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form action="#" id="registration-form">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">firstname</span>
+            <input type="text" id="firstname" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">lastname</span>
+            <input type="text" id="lastname"placeholder="Enter your lastname" required>
+          </div>
+          <div class="input-box">
+            <span class="details">email</span>
+            <input type="text" id="email " placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">phone_number</span>
+            <input type="text" id="phone_number" placeholder="Enter your number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">password</span>
+            <input type="text" id="password" placeholder="Enter your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">ConfirmPassword</span>
+            <input type="text" id="ConfirmPassword" placeholder="Confirm your password" required>
+          </div>
+        </div>
+        <div class="gender-details" id="gender">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title">gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" id="submit_btn" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+<script>
+$('#submit_btn').click(function(){
+
+    var data = {};
+    data.firstname = $('#firstname').val();
+    data.lastname = $('#lastname').val();
+    data.username = $('#email').val();
+    data.email = $('#phone_number').val();
+    data.lastname = $('#password').val();
+    data.username = $('#ConfirmPassword').val();
+    data.email = $('#gender').val();
+    
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8081/register",
+        dataType: JSON,
+        dataType: 'json',
+type: 'post',
+contentType: 'application/json',
+data: JSON.stringify( { "firstname": $('#firstname').val(), 
+"lastname": $('#lastname').val(),
+"email": $('#email').val() ,
+"phone_number": $('#phone_number').val(),
+"password": $('#password').val(),
+"ConfirmPassword": $('#ConfirmPassword').val(),
+"gender": $('#gender').val()} ),
+processData: false,
+  success: function(data) {
+                    if (data.status) {
+                        swal({
+                            title: data.title,
+                            text: data.message,
+                            type: "success"
+                        },function(){
+                            $('#registration-form').trigger('reset');
+                            $('#firstname').focus();
+                        });
+                    } else {
+                        swal({
+                            title: data.title,
+                            text: data.message,
+                            type: "error"
+                        },function(){
+                            $('#registration-form').trigger('reset');
+});
+}
+  }
+})
+})
+
+
+</script>
+</html>
