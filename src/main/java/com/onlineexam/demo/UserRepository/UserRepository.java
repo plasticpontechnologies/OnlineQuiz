@@ -15,7 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import com.onlineexam.demo.Model.Questions;
+//import com.onlineexam.demo.Model.Questions;
 import com.onlineexam.demo.Model.User;
 
 @Component
